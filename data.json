@@ -1,0 +1,50 @@
+{
+"users": {
+"u101": {
+"role": "teller",
+"branch": "MTL"
+},
+"u102": {
+"role": "supervisor",
+"branch": "MTL"
+},
+"u103": {
+"role": "auditor",
+"branch": "TOR"
+},
+"u104": {
+"role": "teller",
+"branch": "TOR"
+}
+},
+"resources": {
+"account_mtl_01": {
+"type": "account",
+"branch": "MTL",
+"owner_id": "customer77"
+},
+"account_tor_01": {
+"type": "account",
+"branch": "TOR",
+"owner_id": "customer88"
+},
+"transfer_01": {
+"type": "transfer",
+"branch": "MTL",
+"owner_id": "customer77",
+"initiated_by": "u101",
+"amount": 2400
+},
+"transfer_02": {
+"type": "transfer",
+"branch": "MTL",
+"owner_id": "customer88",
+"initiated_by": "u104",
+"amount": 5000
+},
+"audit_log_01": {
+"type": "audit_log",
+"branch": "TOR"
+}
+}
+}
