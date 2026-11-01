@@ -1,0 +1,71 @@
+C:\Users\poror\Desktop\CCCS_450__Access_Control_Defence_Methods_Mini_Assignment-master>C:\tools\opa\opa.exe test . -v
+policy_test.rego:596:
+data.cccs450.authz.test_missing_input_is_denied: PASS (506.3µs)
+policy_test.rego:372:
+data.cccs450.authz.test_missing_subject_branch_is_denied: PASS (506.3µs)
+policy_test.rego:79:
+data.cccs450.authz.test_teller_cannot_initiate_transfer_without_mfa: PASS (506.3µs)
+policy_test.rego:475:
+data.cccs450.authz.test_missing_hour_is_denied_for_teller_transfer: PASS (0s)
+policy_test.rego:421:
+data.cccs450.authz.test_missing_mfa_is_denied_for_supervisor_approval: PASS (0s)
+policy_test.rego:387:
+data.cccs450.authz.test_missing_owner_is_denied: PASS (516.5µs)
+policy_test.rego:439:
+data.cccs450.authz.test_missing_amount_is_denied_for_supervisor_approval: PASS (1.0223ms)
+policy_test.rego:5:
+data.cccs450.authz.test_teller_can_view_same_branch_account: PASS (1.0223ms)
+policy_test.rego:22:
+data.cccs450.authz.test_teller_cannot_view_cross_branch_account: PASS (1.0223ms)
+policy_test.rego:402:
+data.cccs450.authz.test_missing_mfa_is_denied_for_teller_transfer: PASS (505.8µs)
+policy_test.rego:139:
+data.cccs450.authz.test_teller_cannot_initiate_transfer_without_amount: PASS (3µs)
+policy_test.rego:59:
+data.cccs450.authz.test_teller_cannot_initiate_transfer_over_5000: PASS (1.5286ms)
+policy_test.rego:158:
+data.cccs450.authz.test_teller_cannot_initiate_transfer_with_string_amount: PASS (1.5286ms)
+policy_test.rego:526:
+data.cccs450.authz.test_auditor_cannot_modify_transaction: PASS (0s)
+policy_test.rego:99:
+data.cccs450.authz.test_teller_cannot_initiate_transfer_outside_hours: PASS (1.5286ms)
+policy_test.rego:494:
+data.cccs450.authz.test_auditor_missing_resource_branch_is_denied: PASS (0s)
+policy_test.rego:119:
+data.cccs450.authz.test_teller_cannot_initiate_transfer_in_another_branch: PASS (1.0223ms)
+policy_test.rego:272:
+data.cccs450.authz.test_auditor_can_read_cross_branch_audit_log: PASS (0s)
+policy_test.rego:457:
+data.cccs450.authz.test_missing_initiator_is_denied_for_supervisor_approval: PASS (0s)
+policy_test.rego:507:
+data.cccs450.authz.test_auditor_cannot_approve_transaction: PASS (0s)
+policy_test.rego:39:
+data.cccs450.authz.test_teller_can_initiate_transfer_at_5000: PASS (1.5286ms)
+policy_test.rego:327:
+data.cccs450.authz.test_missing_role_is_denied: PASS (0s)
+policy_test.rego:195:
+data.cccs450.authz.test_supervisor_cannot_view_cross_branch_account: PASS (950.5µs)
+policy_test.rego:289:
+data.cccs450.authz.test_auditor_cannot_initiate_transfer: PASS (950.5µs)
+policy_test.rego:309:
+data.cccs450.authz.test_unknown_role_is_denied: PASS (0s)
+policy_test.rego:178:
+data.cccs450.authz.test_supervisor_can_view_same_branch_account: PASS (950.5µs)
+policy_test.rego:252:
+data.cccs450.authz.test_supervisor_cannot_approve_without_mfa: PASS (0s)
+policy_test.rego:357:
+data.cccs450.authz.test_missing_resource_type_is_denied: PASS (0s)
+policy_test.rego:342:
+data.cccs450.authz.test_missing_action_is_denied: PASS (505.4µs)
+policy_test.rego:212:
+data.cccs450.authz.test_supervisor_can_approve_another_users_transfer: PASS (1.4559ms)
+policy_test.rego:580:
+data.cccs450.authz.test_unsupported_branch_is_denied: PASS (505.4µs)
+policy_test.rego:232:
+data.cccs450.authz.test_supervisor_cannot_approve_own_transfer: PASS (1.4559ms)
+policy_test.rego:564:
+data.cccs450.authz.test_empty_owner_id_is_denied: PASS (505.4µs)
+policy_test.rego:545:
+data.cccs450.authz.test_auditor_cannot_delete_transaction: PASS (0s)
+--------------------------------------------------------------------------------
+PASS: 34/34
