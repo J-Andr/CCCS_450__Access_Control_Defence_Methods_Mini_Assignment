@@ -1,0 +1,26 @@
+RBAC-only baseline evidence
+==========================
+
+Policy source: Git commit 31e210a
+Commit subject: Implement RBAC-only authorization baseline
+
+The policy in that commit grants based only on role, action, and resource type.
+These decisions were evaluated using the historical policy:
+
+git show 31e210a:policy.rego | opa eval --format raw --data /dev/stdin 'data.cccs450.authz.allow with input as {"subject": {"role": "teller"}, "action": "view_account", "resource": {"type": "account"}}'
+true
+
+git show 31e210a:policy.rego | opa eval --format raw --data /dev/stdin 'data.cccs450.authz.allow with input as {"subject": {"role": "teller"}, "action": "approve_transfer", "resource": {"type": "transfer"}}'
+false
+
+git show 31e210a:policy.rego | opa eval --format raw --data /dev/stdin 'data.cccs450.authz.allow with input as {"subject": {"role": "supervisor"}, "action": "approve_transfer", "resource": {"type": "transfer"}}'
+true
+
+git show 31e210a:policy.rego | opa eval --format raw --data /dev/stdin 'data.cccs450.authz.allow with input as {"subject": {"role": "supervisor"}, "action": "initiate_transfer", "resource": {"type": "transfer"}}'
+false
+
+git show 31e210a:policy.rego | opa eval --format raw --data /dev/stdin 'data.cccs450.authz.allow with input as {"subject": {"role": "auditor"}, "action": "read_audit_log", "resource": {"type": "audit_log"}}'
+true
+
+git show 31e210a:policy.rego | opa eval --format raw --data /dev/stdin 'data.cccs450.authz.allow with input as {"subject": {"role": "auditor"}, "action": "view_account", "resource": {"type": "account"}}'
+false

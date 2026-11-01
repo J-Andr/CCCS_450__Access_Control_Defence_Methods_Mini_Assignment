@@ -5,13 +5,11 @@
     "branch": "MTL",
     "mfa": true
   },
-  "action": "initiate_transfer",
+  "action": "view_account",
   "resource": {
-    "type": "transfer",
+    "type": "account",
     "branch": "MTL",
-    "owner_id": "customer77",
-    "initiated_by": "u101",
-    "amount": 5001
+    "owner_id": "customer77"
   },
   "context": {
     "hour": 14

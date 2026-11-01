@@ -323,3 +323,276 @@ test_unknown_role_is_denied if {
 		"context": {"hour": 14},
 	}
 }
+
+test_missing_role_is_denied if {
+	not allow with input as {
+		"subject": {
+			"id": "u101",
+			"branch": "MTL",
+		},
+		"action": "view_account",
+		"resource": {
+			"type": "account",
+			"branch": "MTL",
+			"owner_id": "customer77",
+		},
+	}
+}
+
+test_missing_action_is_denied if {
+	not allow with input as {
+		"subject": {
+			"id": "u101",
+			"role": "teller",
+			"branch": "MTL",
+		},
+		"resource": {
+			"type": "account",
+			"branch": "MTL",
+			"owner_id": "customer77",
+		},
+	}
+}
+
+test_missing_resource_type_is_denied if {
+	not allow with input as {
+		"subject": {
+			"id": "u101",
+			"role": "teller",
+			"branch": "MTL",
+		},
+		"action": "view_account",
+		"resource": {
+			"branch": "MTL",
+			"owner_id": "customer77",
+		},
+	}
+}
+
+test_missing_subject_branch_is_denied if {
+	not allow with input as {
+		"subject": {
+			"id": "u101",
+			"role": "teller",
+		},
+		"action": "view_account",
+		"resource": {
+			"type": "account",
+			"branch": "MTL",
+			"owner_id": "customer77",
+		},
+	}
+}
+
+test_missing_owner_is_denied if {
+	not allow with input as {
+		"subject": {
+			"id": "u101",
+			"role": "teller",
+			"branch": "MTL",
+		},
+		"action": "view_account",
+		"resource": {
+			"type": "account",
+			"branch": "MTL",
+		},
+	}
+}
+
+test_missing_mfa_is_denied_for_teller_transfer if {
+	not allow with input as {
+		"subject": {
+			"id": "u101",
+			"role": "teller",
+			"branch": "MTL",
+		},
+		"action": "initiate_transfer",
+		"resource": {
+			"type": "transfer",
+			"branch": "MTL",
+			"owner_id": "customer77",
+			"initiated_by": "u101",
+			"amount": 2400,
+		},
+		"context": {"hour": 14},
+	}
+}
+
+test_missing_mfa_is_denied_for_supervisor_approval if {
+	not allow with input as {
+		"subject": {
+			"id": "u102",
+			"role": "supervisor",
+			"branch": "MTL",
+		},
+		"action": "approve_transfer",
+		"resource": {
+			"type": "transfer",
+			"branch": "MTL",
+			"owner_id": "customer77",
+			"initiated_by": "u101",
+			"amount": 2400,
+		},
+	}
+}
+
+test_missing_amount_is_denied_for_supervisor_approval if {
+	not allow with input as {
+		"subject": {
+			"id": "u102",
+			"role": "supervisor",
+			"branch": "MTL",
+			"mfa": true,
+		},
+		"action": "approve_transfer",
+		"resource": {
+			"type": "transfer",
+			"branch": "MTL",
+			"owner_id": "customer77",
+			"initiated_by": "u101",
+		},
+	}
+}
+
+test_missing_initiator_is_denied_for_supervisor_approval if {
+	not allow with input as {
+		"subject": {
+			"id": "u102",
+			"role": "supervisor",
+			"branch": "MTL",
+			"mfa": true,
+		},
+		"action": "approve_transfer",
+		"resource": {
+			"type": "transfer",
+			"branch": "MTL",
+			"owner_id": "customer77",
+			"amount": 2400,
+		},
+	}
+}
+
+test_missing_hour_is_denied_for_teller_transfer if {
+	not allow with input as {
+		"subject": {
+			"id": "u101",
+			"role": "teller",
+			"branch": "MTL",
+			"mfa": true,
+		},
+		"action": "initiate_transfer",
+		"resource": {
+			"type": "transfer",
+			"branch": "MTL",
+			"owner_id": "customer77",
+			"initiated_by": "u101",
+			"amount": 2400,
+		},
+	}
+}
+
+test_auditor_missing_resource_branch_is_denied if {
+	not allow with input as {
+		"subject": {
+			"id": "u103",
+			"role": "auditor",
+		},
+		"action": "read_audit_log",
+		"resource": {
+			"type": "audit_log",
+		},
+	}
+}
+
+test_auditor_cannot_approve_transaction if {
+	not allow with input as {
+		"subject": {
+			"id": "u103",
+			"role": "auditor",
+			"branch": "TOR",
+			"mfa": true,
+		},
+		"action": "approve_transfer",
+		"resource": {
+			"type": "transfer",
+			"branch": "TOR",
+			"owner_id": "customer88",
+			"initiated_by": "u101",
+			"amount": 100,
+		},
+	}
+}
+
+test_auditor_cannot_modify_transaction if {
+	not allow with input as {
+		"subject": {
+			"id": "u103",
+			"role": "auditor",
+			"branch": "TOR",
+			"mfa": true,
+		},
+		"action": "modify_transfer",
+		"resource": {
+			"type": "transfer",
+			"branch": "TOR",
+			"owner_id": "customer88",
+			"initiated_by": "u104",
+			"amount": 100,
+		},
+	}
+}
+
+test_auditor_cannot_delete_transaction if {
+	not allow with input as {
+		"subject": {
+			"id": "u103",
+			"role": "auditor",
+			"branch": "TOR",
+			"mfa": true,
+		},
+		"action": "delete_transfer",
+		"resource": {
+			"type": "transfer",
+			"branch": "TOR",
+			"owner_id": "customer88",
+			"initiated_by": "u104",
+			"amount": 100,
+		},
+	}
+}
+
+test_empty_owner_id_is_denied if {
+	not allow with input as {
+		"subject": {
+			"id": "u101",
+			"role": "teller",
+			"branch": "MTL",
+		},
+		"action": "view_account",
+		"resource": {
+			"type": "account",
+			"branch": "MTL",
+			"owner_id": "",
+		},
+	}
+}
+
+test_unsupported_branch_is_denied if {
+	not allow with input as {
+		"subject": {
+			"id": "u101",
+			"role": "teller",
+			"branch": "NYC",
+		},
+		"action": "view_account",
+		"resource": {
+			"type": "account",
+			"branch": "NYC",
+			"owner_id": "customer77",
+		},
+	}
+}
+
+test_missing_input_is_denied if {
+	not allow with input as {}
+}
