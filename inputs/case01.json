@@ -1,17 +1,17 @@
 {
-"subject": {
-"id": "u101",
-"role": "teller",
-"branch": "MTL",
-"mfa": true
-},
-"action": "view_account",
-"resource": {
-"type": "account",
-"branch": "MTL",
-"owner_id": "customer77"
-},
-"context": {
-"hour": 14
-}
+  "subject": {
+    "id": "u101",
+    "role": "teller",
+    "branch": "MTL",
+    "mfa": true
+  },
+  "action": "view_account",
+  "resource": {
+    "type": "account",
+    "branch": "MTL",
+    "owner_id": "customer77"
+  },
+  "context": {
+    "hour": 14
+  }
 }

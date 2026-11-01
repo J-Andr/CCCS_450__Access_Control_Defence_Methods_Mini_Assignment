@@ -1,0 +1,19 @@
+{
+  "subject": {
+    "id": "u101",
+    "role": "teller",
+    "branch": "MTL",
+    "mfa": true
+  },
+  "action": "initiate_transfer",
+  "resource": {
+    "type": "transfer",
+    "branch": "MTL",
+    "owner_id": "customer77",
+    "initiated_by": "u101",
+    "amount": 5000
+  },
+  "context": {
+    "hour": 14
+  }
+}

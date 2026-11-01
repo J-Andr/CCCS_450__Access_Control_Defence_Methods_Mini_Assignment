@@ -11,19 +11,16 @@ default allow := false
 # --------------------------------------------------
 
 allow if {
-input.subject.role == "teller"
-input.action == "view_account"
-input.resource.type == "account"
+	input.subject.role == "teller"
+	input.action == "view_account"
+	input.resource.type == "account"
 
-```
-is_string(input.subject.id)
-is_string(input.subject.branch)
-is_string(input.resource.branch)
-is_string(input.resource.owner_id)
+	is_string(input.subject.id)
+	is_string(input.subject.branch)
+	is_string(input.resource.branch)
+	is_string(input.resource.owner_id)
 
-input.subject.branch == input.resource.branch
-```
-
+	input.subject.branch == input.resource.branch
 }
 
 # --------------------------------------------------
@@ -37,30 +34,27 @@ input.subject.branch == input.resource.branch
 # --------------------------------------------------
 
 allow if {
-input.subject.role == "teller"
-input.action == "initiate_transfer"
-input.resource.type == "transfer"
+	input.subject.role == "teller"
+	input.action == "initiate_transfer"
+	input.resource.type == "transfer"
 
-```
-is_string(input.subject.id)
-is_string(input.subject.branch)
-is_string(input.resource.branch)
-is_string(input.resource.owner_id)
-is_string(input.resource.initiated_by)
+	is_string(input.subject.id)
+	is_string(input.subject.branch)
+	is_string(input.resource.branch)
+	is_string(input.resource.owner_id)
+	is_string(input.resource.initiated_by)
 
-input.subject.mfa == true
-is_number(input.resource.amount)
-input.resource.amount >= 0
-input.resource.amount <= 5000
+	input.subject.mfa == true
+	is_number(input.resource.amount)
+	input.resource.amount >= 0
+	input.resource.amount <= 5000
 
-is_number(input.context.hour)
-input.context.hour >= 8
-input.context.hour <= 18
+	is_number(input.context.hour)
+	input.context.hour >= 8
+	input.context.hour <= 18
 
-input.subject.branch == input.resource.branch
-input.resource.initiated_by == input.subject.id
-```
-
+	input.subject.branch == input.resource.branch
+	input.resource.initiated_by == input.subject.id
 }
 
 # --------------------------------------------------
@@ -70,19 +64,16 @@ input.resource.initiated_by == input.subject.id
 # --------------------------------------------------
 
 allow if {
-input.subject.role == "supervisor"
-input.action == "view_account"
-input.resource.type == "account"
+	input.subject.role == "supervisor"
+	input.action == "view_account"
+	input.resource.type == "account"
 
-```
-is_string(input.subject.id)
-is_string(input.subject.branch)
-is_string(input.resource.branch)
-is_string(input.resource.owner_id)
+	is_string(input.subject.id)
+	is_string(input.subject.branch)
+	is_string(input.resource.branch)
+	is_string(input.resource.owner_id)
 
-input.subject.branch == input.resource.branch
-```
-
+	input.subject.branch == input.resource.branch
 }
 
 # --------------------------------------------------
@@ -94,23 +85,20 @@ input.subject.branch == input.resource.branch
 # --------------------------------------------------
 
 allow if {
-input.subject.role == "supervisor"
-input.action == "approve_transfer"
-input.resource.type == "transfer"
+	input.subject.role == "supervisor"
+	input.action == "approve_transfer"
+	input.resource.type == "transfer"
 
-```
-is_string(input.subject.id)
-is_string(input.subject.branch)
-is_string(input.resource.branch)
-is_string(input.resource.owner_id)
-is_string(input.resource.initiated_by)
+	is_string(input.subject.id)
+	is_string(input.subject.branch)
+	is_string(input.resource.branch)
+	is_string(input.resource.owner_id)
+	is_string(input.resource.initiated_by)
 
-input.subject.mfa == true
-input.subject.branch == input.resource.branch
+	input.subject.mfa == true
+	input.subject.branch == input.resource.branch
 
-input.subject.id != input.resource.initiated_by
-```
-
+	input.subject.id != input.resource.initiated_by
 }
 
 # --------------------------------------------------
@@ -120,13 +108,10 @@ input.subject.id != input.resource.initiated_by
 # --------------------------------------------------
 
 allow if {
-input.subject.role == "auditor"
-input.action == "read_audit_log"
-input.resource.type == "audit_log"
+	input.subject.role == "auditor"
+	input.action == "read_audit_log"
+	input.resource.type == "audit_log"
 
-```
-is_string(input.subject.id)
-is_string(input.resource.branch)
-```
-
+	is_string(input.subject.id)
+	is_string(input.resource.branch)
 }
